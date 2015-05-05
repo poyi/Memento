@@ -1,0 +1,29 @@
+<template name="ApplicationLayout">
+  <header>
+    <h1>MEMENTO</h1>
+    <h2>This is a global layout template</h2>
+    {{> loginButtons}}
+  </header>
+
+  <div>
+    {{> yield}}
+  </div>
+
+</template>
+
+<template name="home">
+  <h1>This is home template</h1>
+</template>
+
+<template name="notFound">
+  Data not found!
+</template>
+
+<template name="loading">
+  Loading...
+</template>
+
+<template name="userProfile">
+  should render username:
+  {{username}}
+</template>

@@ -1,10 +1,10 @@
-Template.list.helpers({
+Template.List.helpers({
   counter: function () {
     return Session.get('counter');
   }
 });
 
-Template.list.events({
+Template.List.events({
   'click button': function () {
     // increment the counter when button is clicked
     Session.set('counter', Session.get('counter') + 1);
