@@ -1,0 +1,26 @@
+<template name="userProfile">
+  <div class="banner-background ui-box centered">
+    <h1 class="centered">{{profile.firstName}} {{profile.lastName}}</h1>
+  </div>
+  <div class="profile-edit-form">
+    <form>
+        <div class="form-field">
+          <span class="field-title">First Name:</span>
+          <input type="text" name="firstname" placeholder="John" value="{{profile.firstName}}">
+        </div>
+        <div class="form-field">
+          <span class="field-title">Last Name:</span>
+          <input type="text" name="lastName" placeholder="Doe" value="{{profile.lastName}}">
+        </div>
+        <div class="form-field">
+          <span class="field-title">Location:</span>
+          <input type="text" name="location" placeholder="City, State/Country" value="{{profile.location}}">
+        </div>
+        <div class="form-field">
+          <span class="field-title">Bio:</span>
+          <textarea type="text" name="bio" placeholder="Say something about yourself.." value="{{profile.bio}}"></textarea>
+        </div>
+        <button class="save-button" type="submit">SAVE</button>
+      </form>
+  </div>
+</template>

@@ -1,0 +1,21 @@
+// Construct various padding and margin styles
+$margin-positions: left, right, top, bottom
+$margin-values: 0, 10, 15, 20, 25, 30, 35, 40, 50, 60
+
+@each $position in $margin-positions
+  @each $value in $margin-values
+    $margin-property: margin- + $position
+    $padding-property: padding- + $position
+
+    $style: $value + 0px
+    @if $value == 0
+      $style: $value
+
+    .#{$margin-property}-#{$value}
+      #{$margin-property}: #{$style} !important
+
+    .#{$padding-property}-#{$value}
+      #{$padding-property}: #{$style} !important
+
+    table .#{$margin-property}-#{$value} td
+      #{$padding-property}: #{$style} !important

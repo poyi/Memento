@@ -11,9 +11,16 @@ Router.map(function(){
 
   this.route('userProfile', {
     path: '/:username',
+    waitOn: function() {
+      return [
+        Meteor.subscribe('users')
+      ];
+    },
      data: function(){
         var username = this.params.username;
         var user = Meteor.users.findOne({username: username});
+        // TODO: Add beforeHook to load and check before displaying not found
+        console.log(user);
         if (user) {
           return user;
         } else {
@@ -21,7 +28,7 @@ Router.map(function(){
         }
         
     }
-  }, {where: 'server'});
+  });
 
   this.route('List', {
     path: '/:username/:permalink',
