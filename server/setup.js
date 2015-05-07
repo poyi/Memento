@@ -28,10 +28,27 @@ Meteor.methods({
       _id : itemId
     });
   },
-  'updateList' : function(listId, listUrl, listDesc, background) {
+  'addList' : function(user, username, listName, listDesc, listUrl, background) {
+    var newList = Lists.insert({
+      'user': user,
+      'username': username,
+      'title': listName,
+      'permalink': listUrl,
+      'desc': listDesc,
+      'background': background
+    });
+    return newList;
+  },
+  'deleteList' : function(listId) {
+    Lists.remove({
+      '_id': listId
+    });
+  },
+  'updateList' : function(listId, listName, listDesc, background) {
     Lists.update({_id:listId}, { $set: {
       'listId': listId,
-      'listDesc': listDesc,
+      'title': listName,
+      'desc': listDesc,
       'background': background
       } 
     });

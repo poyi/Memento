@@ -30,12 +30,17 @@ Router.map(function(){
     }
   });
 
-  this.route('Items', {
+  this.route('listPage', {
     path: '/:username/:permalink',
     data: function(){
-        var username = this.params.username;
-        var permalinkVar = this.params.permalink;
-        return Lists.findOne({permalink: permalinkVar}, {username: username});
+      var username = this.params.username;
+      var permalinkVar = this.params.permalink;
+      var list = Lists.findOne({permalink: permalinkVar}, {username: username});
+      if (list) {
+        return list;
+      } else {
+        this.render('notFound');
+      }
     },
     onAfterAction: function(){
       var username = this.params.username;

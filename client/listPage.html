@@ -1,10 +1,10 @@
-<template name="items">
+<template name="listPage">
   <div class="banner-background ui-box centered column" style="background-image: url('{{background}}')">
     <div class="profile-name">{{title}}</div>
     <div class="profile-location">{{desc}}</div>
   </div>
   <div class="page-action-group ui-box centered">
-    <div class="edit-link edit-list-link">Edit List Info</div>
+    <div class="edit-link edit-list-link">Edit List</div>
     <div class="edit-link add-item-link">Add to List</div>
   </div>
    <div class="form-panel list-edit-form">
@@ -23,6 +23,7 @@
         <input type="text" name="background" placeholder="http://" value="{{background}}">
       </div>
       <button class="update-list success-button" type="submit">Update</button>
+      <button class="delete-list delete-link">Delete List</button>
     </form>
   </div>
   <div class="form-panel edit-item-form">

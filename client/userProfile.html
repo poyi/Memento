@@ -4,7 +4,30 @@
     <div class="profile-location">{{profile.location}}</div>
   </div>
   <div class="page-action-group ui-box centered">
-      <div class="edit-link edit-profile-link">Edit Profile</div>
+    <div class="edit-link edit-profile-link">Edit Profile</div>
+    <div class="edit-link add-list-link">Add New List</div>
+  </div>
+  <div class="form-panel add-list-form">
+    <form>
+      <div class="close-form">Close</div>
+      <div class="form-field">
+        <span class="field-title">List Name:</span>
+        <input type="text" name="listName" placeholder="Awesome list">
+      </div>
+      <div class="form-field">
+        <span class="field-title">List Description:</span>
+        <textarea type="text" name="listDesc" placeholder="Say something about this list.."></textarea>
+      </div>
+      <div class="form-field">
+        <span class="field-title">List URL:</span><div class="url-exist">URL Taken, please use a different one.</div>
+        <input type="text" name="listURL" class="link-url" placeholder="the link to your list">
+      </div>
+      <div class="form-field">
+        <span class="field-title">Background Image URL:</span>
+        <input type="text" name="background" placeholder="http://">
+      </div>
+      <button class="add-list success-button" type="submit">Add List</button>
+    </form>
   </div>
   <div class="form-panel profile-edit-form">
     <form>
@@ -33,5 +56,5 @@
     </form>
   </div>
   <div class="profile-bio">{{profile.bio}}</div>
-  {{> list}}
+  {{> listIndex}}
 </template>

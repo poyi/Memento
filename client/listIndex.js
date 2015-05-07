@@ -1,4 +1,4 @@
-Template.list.helpers({
+Template.listIndex.helpers({
   'list': function(){
     var currentUserId = Meteor.userId();
     var list = Lists.find({user: currentUserId});

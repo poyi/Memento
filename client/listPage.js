@@ -1,4 +1,4 @@
-Template.items.events({
+Template.listPage.events({
   'click .add-item-button': function (e) {
     e.preventDefault();
     var currentUser = Meteor.userId();
@@ -35,22 +35,40 @@ Template.items.events({
   'click .close-form': function() {
     $('.form-panel').hide();
   },
-  'click .update-list': function() {
+  'click .delete-list': function(e) {
+    e.preventDefault();
     var listId = Session.get('currentList')._id;
-    var listDesc = $('input[name="listDesc"]').val();
+    var username = Lists.findOne(listId).username;
+    Meteor.call('deleteList', listId, function(error, response){
+      if ( error ) {
+        console.log(error);
+      } else {
+        Router.go('/' + username);
+      }
+    });
+    $('.form-panel').hide();
+  },
+  'click .update-list': function(e) {
+    e.preventDefault();
+    var listId = Session.get('currentList')._id;
+    var username = Lists.findOne(listId).username;
+    var permalink = Lists.findOne(listId).permalink;
+    var listName = $('input[name="listName"]').val();
+    var listDesc = $('textarea[name="listDesc"]').val();
     var background = $('input[name="background"]').val();
-    Meteor.call('updateList', listId, listDesc, background, function(error, response){
+    Meteor.call('updateList', listId, listName, listDesc, background, function(error, response){
       if ( error ) {
         console.log(error);
       } else {
         console.log('Updated List');
+        Router.go('/' + username + '/' + permalink);
         $('.form-panel').fadeOut();
       }
     });
   }
 });
 
-Template.items.helpers({
+Template.listPage.helpers({
   'items': function(){
     var list = Session.get('currentList')._id;
     return Items.find({list: list});
