@@ -2,7 +2,8 @@ body
   background: #f3f3f3
 
 .navBar
-  background: #e8e8e8
+  position: absolute
+  background: rgba(255,255,255,0.95)
 
 .dropdown-menu
   position: absolute
@@ -11,12 +12,27 @@ body
 
 .banner-background
   width: 100%
-  height: 200px
+  height: 260px
   background: #678CE8
+  background-position:50% 50%;
+  background-size:cover;
+  z-index: -2
 
-.profile-edit-form
-  width: 500px
-  margin-top: -20px
+.banner-background:before 
+  content: " "
+  width: 100%
+  height: 200px
+  position: absolute
+  top: 60px
+  left: 0
+  z-index: -1
+  background: rgba(0,0,0,0.3)
+
+
+.form-panel
+  display: none
+  width: 400px
+  margin-top: -80px
   padding: 20px
   border: 1px solid #e9e9e9
   background: #ffffff
@@ -38,7 +54,7 @@ body
     padding: 5px
     border: 1px solid #e9e9e9
 
-  .save-button
+  .success-button
     width: 100%
     color: #ffffff
     font-size: 12px
@@ -47,3 +63,93 @@ body
     padding: 10px 0
     border: 0
 
+  .close-form
+    float: right
+    font-size: 11px
+    color: #1F1F1F
+    cursor: pointer
+
+    &:hover
+      color: #518BFF
+
+.profile-name
+  font-size: 20px
+  color: white
+  font-weight: bold
+  text-align: center
+  margin-top: 60px
+
+.profile-location
+  font-size: 14px
+  color: white
+  text-align: center
+  margin-top: 30px
+
+.profile-bio
+  margin-top: 30px
+  font-size: 14px
+  max-width: 600px
+  color: #777
+  text-align: center
+  border-bottom: 1px solid #9EE1D4
+  padding-bottom: 40px
+  width: 400px
+  line-height: 24px
+
+.edit-link
+  margin-top: 20px
+  padding: 10px
+  color: #518BFF
+  font-size: 13px
+  border: 1px solid #9EE1D4
+  margin-left: 10px
+  cursor: pointer
+
+  &:hover
+    background: #E8F9FF
+
+.list-item
+  margin-top: 20px
+  text-align: center
+  border-bottom: 1px solid #9EE1D4
+  width: 400px
+  padding-bottom: 20px
+
+  a
+    display: block
+    font-size: 16px
+    margin-bottom: 10px
+
+  .list-content
+    font-size: 13px
+    color: #777
+
+.item-card
+  width: 400px
+  padding: 20px
+  text-align: center
+  margin-top: 30px
+
+  p
+    font-size: 13px
+    color: #777
+    margin-top: 15px
+
+.item-actions
+  font-size: 11px
+  border-top: 1px dashed #e8e8e8
+  margin-top: 20px
+  padding-top: 20px
+
+  a
+    color: #DCDCDC
+
+  a:hover
+    color: #518BFF
+
+.back-link
+  margin-top: 40px
+  font-size: 12px
+  padding-top: 20px
+  border-top: 1px solid #e8e8e8
+  text-align: center

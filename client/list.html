@@ -1,4 +1,10 @@
-<template name="List">
-  <h1>{{title}}</h1>
-    {{content}}
+<template name="list">
+  {{#each list}}
+  <div class="list-item">
+    <a href="/{{username}}/{{permalink}}">{{title}}</a>
+    <div class="list-content">
+      {{desc}}
+    </div>
+  </div>
+  {{/each}}
 </template>

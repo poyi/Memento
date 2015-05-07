@@ -1,0 +1,74 @@
+<template name="items">
+  <div class="banner-background ui-box centered column" style="background-image: url('{{background}}')">
+    <div class="profile-name">{{title}}</div>
+    <div class="profile-location">{{desc}}</div>
+  </div>
+  <div class="page-action-group ui-box centered">
+    <div class="edit-link edit-list-link">Edit List Info</div>
+    <div class="edit-link add-item-link">Add to List</div>
+  </div>
+   <div class="form-panel list-edit-form">
+    <form>
+      <div class="close-form">Close</div>
+      <div class="form-field">
+        <span class="field-title">List Name:</span>
+        <input type="text" name="listName" placeholder="Awesome list" value="{{title}}">
+      </div>
+      <div class="form-field">
+        <span class="field-title">List Description:</span>
+        <textarea type="text" name="listDesc" placeholder="Say something about this list.." value="{{desc}}"></textarea>
+      </div>
+      <div class="form-field">
+        <span class="field-title">Background Image URL:</span>
+        <input type="text" name="background" placeholder="http://" value="{{background}}">
+      </div>
+      <button class="update-list success-button" type="submit">Update</button>
+    </form>
+  </div>
+  <div class="form-panel edit-item-form">
+    <form>
+      <div class="form-field">
+        <span class="field-title">Item Name:</span>
+        <input type="text" name="itemName" placeholder="Item Name" value="{{item.name}}">
+      </div>
+      <div class="form-field">
+        <span class="field-title">Item URL:</span>
+        <input type="text" name="itemUrl" placeholder="http://" value="{{item.url}}">
+      </div>
+      <button class="edit-item-button success-button" type="submit">UPDATE</button>
+    </form>
+  </div>
+  <div class="form-panel add-item-form">
+    <div class="close-form">Close</div>
+    <form>
+      <div class="form-field">
+        <span class="field-title">Item Name:</span>
+        <input type="text" name="newItemName" placeholder="Item Name">
+      </div>
+      <div class="form-field">
+        <span class="field-title">Item URL:</span>
+        <input type="text" name="newItemUrl" placeholder="http://">
+      </div>
+      <div class="form-field">
+        <span class="field-title">Description:</span>
+        <textarea type="text" name="newItemDesc" placeholder="Describe this item (optional)"></textarea>
+      </div>
+      <button class="add-item-button success-button" type="submit">ADD</button>
+    </form>
+  </div>
+  {{#each items}}
+    <div class="item-card">
+      <h1>{{itemName}}</h1>
+      <p>{{itemDesc}}</p>
+      <div name="{{_id}}" class="item-actions">
+        <span class="item-link left"><a href="{{itemUrl}}">Visit Link</a></span>
+        <span class="edit-item right margin-left-20"><a href="#">Edit</a></span>
+        <span class="delete-item right"><a href="#">Delete</a></span>
+      </div>
+    </div>
+  {{/each}}
+  <div class="back-link">
+    <a href="/{{username}}">Back to {{username}}'s Collections</a>
+  </div>
+</template>
+
