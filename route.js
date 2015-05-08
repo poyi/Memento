@@ -17,13 +17,7 @@ Router.map(function(){
     data: function(){
       var username = this.params.username;
       var user = Meteor.users.findOne({username: username});
-      // TODO: Add beforeHook to load and check before displaying not found
-      console.log(user);
-      if (user) {
-        return user;
-      } else {
-         this.render('notFound');
-      }
+      return user;
     },
     onAfterAction: function(){
       var username = this.params.username;
@@ -41,11 +35,7 @@ Router.map(function(){
       var username = this.params.username;
       var permalinkVar = this.params.permalink;
       var list = Lists.findOne({permalink: permalinkVar}, {username: username});
-      if (list) {
-        return list;
-      } else {
-        this.render('notFound');
-      }
+      return list;
     },
     onAfterAction: function(){
       var username = this.params.username;

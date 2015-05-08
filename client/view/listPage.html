@@ -1,4 +1,5 @@
 <template name="listPage">
+{{#if listExists}}
   <div class="{{backgroundStyle}}" style="background-image: url('{{background}}')">
     <div class="profile-name">{{title}}</div>
     <div class="profile-location">{{desc}}</div>
@@ -87,5 +88,8 @@
   <div class="back-link">
     <a href="/{{username}}">Back to {{username}}'s Collections</a>
   </div>
+{{else}}
+ {{> notFound}}
+{{/if}}
 </template>
 

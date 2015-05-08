@@ -17,8 +17,8 @@ Template.listPage.events({
                 toastr.error(error.reason);
         }
       } else {
-        console.log('Added Item to list');
         $('.add-item-form').fadeOut();
+        toastr.success("New item added!");
       }
     });
   },
@@ -38,7 +38,7 @@ Template.listPage.events({
       if ( error ) {
         console.log(error);
       } else {
-        console.log('Deleted Item');
+        toastr.success("Item deleted.");
       }
     });
   },
@@ -89,28 +89,46 @@ Template.listPage.events({
 });
 
 Template.listPage.helpers({
+  'listExists': function(){
+    var curentList = Session.get('currentList');
+    if(curentList) {
+      var list = Session.get('currentList')._id;
+      return Items.find({list: list});
+    } else {
+      return false
+    } 
+  },
   'items': function(){
-    var list = Session.get('currentList')._id;
-    return Items.find({list: list});
+    var currentList = Session.get('currentList');
+    if(currentList) {
+      var list = currentList._id;
+      return Items.find({list: list});
+    }
   },
   'count': function(){
-    var listId = Session.get('currentList')._id;
-    var items = Items.find({list: listId});
-    var count = items.count();
-    if(count > 0){
-      return false
-    } else {
-      return true
+    var currentList = Session.get('currentList');
+    if(currentList) {
+      var listId = currentList._id;
+      var items = Items.find({list: listId});
+      var count = items.count();
+      if(count > 0){
+        return false
+      } else {
+        return true
+      }
     }
   },
   'listOwner': function() {
-    var list = Session.get('currentList')._id;
-    var listUser = Lists.findOne(list).user;
-    var currentUser = Meteor.userId();
-    if (listUser == currentUser) {
-      return true
-    } else {
-      return false
+    var currentList = Session.get('currentList');
+    if(currentList) {
+      var list = currentList._id;
+      var listUser = Lists.findOne(list).user;
+      var currentUser = Meteor.userId();
+      if (listUser == currentUser) {
+        return true
+      } else {
+        return false
+      }
     }
   },
   'backgroundStyle': function() {
