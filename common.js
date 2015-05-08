@@ -26,6 +26,12 @@ Schemas.listDetail = new SimpleSchema({
         type: String,
         optional: true
     },
+    username: {
+        type: String
+    },
+    user: {
+        type: String
+    },
     background: {
         type: String,
         regEx: SimpleSchema.RegEx.Url,
@@ -40,6 +46,12 @@ Schemas.itemDetail = new SimpleSchema({
     itemDesc: {
         type: String,
         optional: true
+    },
+    list: {
+        type: String
+    },
+    user: {
+        type: String
     },
     itemUrl: {
         type: String,

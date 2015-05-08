@@ -13,5 +13,14 @@ Template.listIndex.helpers({
     } else {
       return true
     }
+  },
+  'profileOwner': function() {
+    var profileUser = Session.get('profileUser')._id;
+    var currentUser = Meteor.userId();
+    if (profileUser == currentUser) {
+      return true
+    } else {
+      return false
+    }
   }
 });

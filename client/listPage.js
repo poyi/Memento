@@ -98,5 +98,15 @@ Template.listPage.helpers({
     } else {
       return true
     }
+  },
+  'listOwner': function() {
+    var list = Session.get('currentList')._id;
+    var listUser = Lists.findOne(list).user;
+    var currentUser = Meteor.userId();
+    if (listUser == currentUser) {
+      return true
+    } else {
+      return false
+    }
   }
 });

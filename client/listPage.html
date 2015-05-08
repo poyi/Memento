@@ -3,7 +3,7 @@
     <div class="profile-name">{{title}}</div>
     <div class="profile-location">{{desc}}</div>
   </div>
-  {{#if currentUser}}
+  {{#if listOwner}}
   <div class="page-action-group ui-box centered">
     <div class="edit-link edit-list-link">Edit List</div>
     <div class="edit-link add-item-link">Add to List</div>
@@ -67,7 +67,7 @@
       <div class="item-name"><h1>{{itemName}}</h1></div>
       {{/if}}
       <p class="item-desc">{{itemDesc}}</p>
-      {{#if currentUser}}
+      {{#if listOwner}}
         <div name="{{_id}}" class="item-actions">
           <span class="delete-item"><a href="#">Delete</a></span>
           <span class="edit-item margin-left-20"><a href="#">Edit Item</a></span>
@@ -77,7 +77,7 @@
   {{/each}}
   {{#if count}}
   <div class="no-list">There is no item <b>yet</b>. 
-    {{#if currentUser}}
+    {{#if listOwner}}
       <a href="#" class="margin-left-10 add-item-link">Add One</a>
     {{/if}}
   </div>

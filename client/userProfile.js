@@ -47,7 +47,9 @@ Template.userProfile.events({
       } else {
         var user = Meteor.userId();
         var username = Meteor.users.findOne(user).username;
-        var permalink = Lists.findOne(response).permalink;
+        var newList = Lists.findOne(response)
+        var permalink = newList.permalink;
+        Session.set('currentList', newList);
         Router.go('/'+username+'/'+permalink);
         toastr.success("New list created!");
       }
@@ -64,6 +66,18 @@ Template.userProfile.events({
       $('.url-exist').hide();
       $('.add-list').removeClass("disabled-button");
       $('.add-list').removeAttr("disabled");
+    }
+  }
+});
+
+Template.userProfile.helpers({
+  'profileOwner': function() {
+    var profileUser = Session.get('profileUser')._id;
+    var currentUser = Meteor.userId();
+    if (profileUser == currentUser) {
+      return true
+    } else {
+      return false
     }
   }
 });
