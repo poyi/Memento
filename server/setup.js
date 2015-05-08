@@ -2,6 +2,14 @@ Meteor.publish("users", function () {
   return Meteor.users.find();
 });
 
+Meteor.publish("lists", function () {
+  return Lists.find();
+});
+
+Meteor.publish("items", function () {
+  return Items.find();
+});
+
 Meteor.methods({
   'updateProfile' : function(firstName, lastName, location, background, bio) {
     Meteor.users.update({_id:Meteor.userId()}, { $set: {
@@ -53,4 +61,10 @@ Meteor.methods({
       } 
     });
   },
+  'updateBackgroundDesign' : function(currentList, style) {
+    Lists.update({_id:currentList}, { $set: {
+      'backgroundStyle': style
+      } 
+    });
+  }
 });

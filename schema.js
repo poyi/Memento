@@ -17,7 +17,8 @@ Schemas.listDetail = new SimpleSchema({
         type: String
     },
     backgroundStyle: {
-        type: String
+        type: String,
+        optional: true
     },
     permalink: {
         type: String,

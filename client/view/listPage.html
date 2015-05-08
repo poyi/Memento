@@ -1,14 +1,16 @@
 <template name="listPage">
-  <div class="list-background-slim" style="background-image: url('{{background}}')">
+  <div class="{{backgroundStyle}}" style="background-image: url('{{background}}')">
     <div class="profile-name">{{title}}</div>
     <div class="profile-location">{{desc}}</div>
   </div>
   {{#if listOwner}}
   <div class="page-action-group ui-box centered">
+    <div class="edit-link edit-design-link">Edit Design</div>
     <div class="edit-link edit-list-link">Edit List</div>
     <div class="edit-link add-item-link">Add to List</div>
   </div>
   {{/if}}
+  {{> designPanel}}
    <div class="form-panel list-edit-form">
     <form>
       <div class="close-form">Close</div>

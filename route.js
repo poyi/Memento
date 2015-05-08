@@ -12,9 +12,7 @@ Router.map(function(){
   this.route('userProfile', {
     path: '/:username',
     waitOn: function() {
-      return [
-        Meteor.subscribe('users')
-      ];
+      return Meteor.subscribe('users');
     },
     data: function(){
       var username = this.params.username;
@@ -32,11 +30,13 @@ Router.map(function(){
       var user = Meteor.users.findOne({username: username});
       Session.set('profileUser', user);
     }
-
   });
 
   this.route('listPage', {
     path: '/:username/:permalink',
+    waitOn: function() {
+      return Meteor.subscribe('lists');
+    },
     data: function(){
       var username = this.params.username;
       var permalinkVar = this.params.permalink;
@@ -50,7 +50,11 @@ Router.map(function(){
     onAfterAction: function(){
       var username = this.params.username;
       var permalinkVar = this.params.permalink;
-      Session.set('currentList', Lists.findOne({permalink: permalinkVar}, {username: username}));
+      var list = Lists.findOne({permalink: permalinkVar}, {username: username});
+      if(list) {
+        Session.set('currentList', list);
+        Session.set('backgroundStyle', list.backgroundStyle);
+      }
     }
-  }, {where: 'server'});
+  });
 });

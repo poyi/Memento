@@ -28,6 +28,10 @@ Template.listPage.events({
   'click .edit-list-link': function() {
     $('.list-edit-form').fadeToggle();
   },
+  'click .edit-design-link': function() {
+    $('.list-design-form').fadeToggle();
+    $( "button[name*='"+ Session.get('backgroundStyle') +"']" ).addClass('style-selected');
+  },
   'click .delete-item': function(e) {
     var itemId = $(e.target).parents('.item-actions').attr('name');
     Meteor.call('deleteItem', itemId, function(error, response){
@@ -107,6 +111,14 @@ Template.listPage.helpers({
       return true
     } else {
       return false
+    }
+  },
+  'backgroundStyle': function() {
+    var isSet = Session.get('backgroundStyle');
+    if(isSet) {
+      return isSet
+    } else {
+      return "list-background-subtle";
     }
   }
 });
