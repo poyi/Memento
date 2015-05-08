@@ -1,11 +1,11 @@
 <template name="ApplicationLayout">
   <div class="navBar">
-    <div class="left center-vertically padding-left-20">MEMENTO</div>
-    <div class="login-buttons center-vertically">
+    <div class="logo ui-box centered center-vertically">MEMENTO</div>
+    <div class="login-buttons right">
       {{> loginButtons}}
     </div>
     {{#if currentUser}}
-    <div class="profile-link center-vertically"><a href="{{profileLink}}">My Profile</a></div>
+    <div class="profile-link left"><a href="{{profileLink}}">My Profile</a></div>
     {{/if}}
   </div>
 
