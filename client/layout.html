@@ -1,9 +1,12 @@
 <template name="ApplicationLayout">
   <div class="navBar">
     <div class="left center-vertically padding-left-20">MEMENTO</div>
-    <div class="nav navbar-nav navbar-right center-vertically padding-right-20">
+    <div class="login-buttons center-vertically">
       {{> loginButtons}}
     </div>
+    {{#if currentUser}}
+    <div class="profile-link center-vertically"><a href="{{profileLink}}">My Profile</a></div>
+    {{/if}}
   </div>
 
   <div id="main" class="ui-box column centered">

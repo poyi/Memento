@@ -13,4 +13,11 @@ Meteor.startup(function() {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
   }
-}); 
+});
+
+Template.ApplicationLayout.helpers({
+  'profileLink': function() {
+    var username = Meteor.user().username;
+    return "/" + username;
+    }
+});
