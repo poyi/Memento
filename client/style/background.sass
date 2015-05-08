@@ -1,0 +1,51 @@
+@import 'colors';
+
+// List page background templates
+
+.list-background-wide
+  flex-direction: column
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100%
+  height: 260px
+  background: #678CE8
+  background-position:50% 50%;
+  background-size:cover;
+  z-index: -2
+
+.list-background-wide:before 
+  content: " "
+  width: 100%
+  height: 200px
+  position: absolute
+  top: 60px
+  left: 0
+  z-index: -1
+  background: rgba(0,0,0,0.3)
+
+.list-background-slim
+  flex-direction: column
+  display: flex
+  margin-top: 60px
+  align-items: center
+  justify-content: center
+  width: 960px
+  height: 260px
+  background: #678CE8
+  background-position:50% 50%;
+  background-size:cover;
+  z-index: -2
+
+  .profile-name
+    margin-top: 0px
+
+.list-background-slim:before 
+  content: " "
+  width: 960px
+  height: 260px
+  position: absolute
+  margin: 0 auto
+  top: 60px
+  z-index: -1
+  background: rgba(0,0,0,0.3)
