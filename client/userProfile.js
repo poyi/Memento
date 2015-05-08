@@ -6,13 +6,12 @@ Template.userProfile.events({
     var firstName = $('input[name="firstname"]').val();
     var lastName = $('input[name="lastname"]').val();
     var location = $('input[name="location"]').val();
-    var background = $('input[name="background"]').val();
+    var background = $('input[name="profileBackground"]').val();
     var bio = $('textarea[name="bio"]').val();
     Meteor.call('updateProfile', firstName, lastName, location, background, bio, function(error, response){
       if ( error ) {
         console.log(error);
       } else {
-        console.log('updated profile');
         $('.profile-edit-form').fadeOut();
       }
     });
@@ -35,12 +34,22 @@ Template.userProfile.events({
     var background = $('input[name="background"]').val();
     Meteor.call('addList', user, username, listName, listDesc, listUrl, background, function(error, response){
       if ( error ) {
-        console.log(error);
+        switch(error.reason) {
+            case "Title is required":
+                toastr.error("Please fill in the list title.");
+                break;
+            case "Permalink is required":
+                toastr.error("Please provide a link url.");
+                break;
+            default:
+                toastr.error(error.reason);
+        }
       } else {
         var user = Meteor.userId();
         var username = Meteor.users.findOne(user).username;
         var permalink = Lists.findOne(response).permalink;
-        Router.go('/'+username+'/'+permalink)
+        Router.go('/'+username+'/'+permalink);
+        toastr.success("New list created!");
       }
     });
   },
@@ -54,7 +63,7 @@ Template.userProfile.events({
     } else {
       $('.url-exist').hide();
       $('.add-list').removeClass("disabled-button");
-      $('.add-list').attr("disabled","");
+      $('.add-list').removeAttr("disabled");
     }
   }
 });

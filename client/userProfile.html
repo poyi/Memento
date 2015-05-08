@@ -3,10 +3,12 @@
     <div class="profile-name">{{profile.firstName}} {{profile.lastName}}</div>
     <div class="profile-location">{{profile.location}}</div>
   </div>
+  {{#if currentUser}}
   <div class="page-action-group ui-box centered">
     <div class="edit-link edit-profile-link">Edit Profile</div>
     <div class="edit-link add-list-link">Add New List</div>
   </div>
+  {{/if}}
   <div class="form-panel add-list-form">
     <form>
       <div class="close-form">Close</div>
@@ -50,7 +52,7 @@
       </div>
       <div class="form-field">
         <span class="field-title">Background Image URL:</span>
-        <input type="text" name="background" placeholder="http://" value="{{profile.background}}">
+        <input type="text" name="profileBackground" placeholder="http://" value="{{profile.background}}">
       </div>
       <button class="save-button success-button" type="submit">SAVE</button>
     </form>

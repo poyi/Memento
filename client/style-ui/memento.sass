@@ -1,5 +1,8 @@
 @import 'colors';
 
+#main
+  margin-bottom: 100px
+
 body
   background: #f3f3f3
 
@@ -39,18 +42,23 @@ body
   border: 1px solid #e9e9e9
   background: #ffffff
 
-  span
+  .field-title
     display: inline-block
     width: 100%
+    font-size: 13px
+    color: $grey
+    font-weight: bold
     margin-bottom: 10px
 
   input
     width: 100%
+    font-size: 13px
     padding: 5px
     margin-bottom: 30px
 
   textarea
     width: 100%
+    font-size: 13px
     height: 60px
     margin-bottom: 30px
     padding: 5px
@@ -58,26 +66,36 @@ body
 
   .success-button
     width: 100%
-    color: #ffffff
+    color: white
     font-size: 12px
+    font-weight: bold
     height: 40px
-    background: #3CE83D
+    background: $green
     padding: 10px 0
     border: 0
+
+    &:hover
+      background: $light-green
 
   .close-form
     float: right
     font-size: 11px
-    color: #1F1F1F
+    color: $black
     cursor: pointer
 
     &:hover
-      color: #518BFF
+      text-decoration: underline
+      color: $red
 
-  .delete-list
+  .delete-link
     margin-top: 20px
     font-size: 13px
-    color: #1F1F1F
+    color: $black
+    cursor: pointer
+
+    &:hover
+      text-decoration: underline
+      color: $red
 
   .url-exist
     display: none
@@ -143,7 +161,10 @@ body
   text-align: center
   margin-top: 30px
 
-  p
+  .item-name a
+    color: $black
+
+  .item-desc
     font-size: 13px
     color: #777
     margin-top: 15px
@@ -169,3 +190,12 @@ body
 
 .disabled-button
   opacity: 0.2
+
+.not-found
+  font-size: 40px
+  color: $black
+  margin-top: 160px
+
+.no-list
+  margin-top: 40px
+  font-size: 14px

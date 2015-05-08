@@ -16,18 +16,23 @@ Router.map(function(){
         Meteor.subscribe('users')
       ];
     },
-     data: function(){
-        var username = this.params.username;
-        var user = Meteor.users.findOne({username: username});
-        // TODO: Add beforeHook to load and check before displaying not found
-        console.log(user);
-        if (user) {
-          return user;
-        } else {
-           this.render('notFound');
-        }
-        
+    data: function(){
+      var username = this.params.username;
+      var user = Meteor.users.findOne({username: username});
+      // TODO: Add beforeHook to load and check before displaying not found
+      console.log(user);
+      if (user) {
+        return user;
+      } else {
+         this.render('notFound');
+      }
+    },
+    onAfterAction: function(){
+      var username = this.params.username;
+      var user = Meteor.users.findOne({username: username});
+      Session.set('profileUser', user);
     }
+
   });
 
   this.route('listPage', {

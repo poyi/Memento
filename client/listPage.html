@@ -3,10 +3,12 @@
     <div class="profile-name">{{title}}</div>
     <div class="profile-location">{{desc}}</div>
   </div>
+  {{#if currentUser}}
   <div class="page-action-group ui-box centered">
     <div class="edit-link edit-list-link">Edit List</div>
     <div class="edit-link add-item-link">Add to List</div>
   </div>
+  {{/if}}
    <div class="form-panel list-edit-form">
     <form>
       <div class="close-form">Close</div>
@@ -20,10 +22,10 @@
       </div>
       <div class="form-field">
         <span class="field-title">Background Image URL:</span>
-        <input type="text" name="background" placeholder="http://" value="{{background}}">
+        <input type="text" name="listBackground" placeholder="http://" value="{{background}}">
       </div>
       <button class="update-list success-button" type="submit">Update</button>
-      <button class="delete-list delete-link">Delete List</button>
+      <div class="delete-list delete-link">Delete List</div>
     </form>
   </div>
   <div class="form-panel edit-item-form">
@@ -59,15 +61,27 @@
   </div>
   {{#each items}}
     <div class="item-card">
-      <h1>{{itemName}}</h1>
-      <p>{{itemDesc}}</p>
-      <div name="{{_id}}" class="item-actions">
-        <span class="item-link left"><a href="{{itemUrl}}">Visit Link</a></span>
-        <span class="edit-item right margin-left-20"><a href="#">Edit</a></span>
-        <span class="delete-item right"><a href="#">Delete</a></span>
-      </div>
+      {{#if itemUrl}}
+      <div class="item-name"><a href="{{itemUrl}}"><h1>{{itemName}}</h1></a></div>
+      {{else}}
+      <div class="item-name"><h1>{{itemName}}</h1></div>
+      {{/if}}
+      <p class="item-desc">{{itemDesc}}</p>
+      {{#if currentUser}}
+        <div name="{{_id}}" class="item-actions">
+          <span class="delete-item"><a href="#">Delete</a></span>
+          <span class="edit-item margin-left-20"><a href="#">Edit Item</a></span>
+        </div>
+      {{/if}}
     </div>
   {{/each}}
+  {{#if count}}
+  <div class="no-list">There is no item <b>yet</b>. 
+    {{#if currentUser}}
+      <a href="#" class="margin-left-10 add-item-link">Add One</a>
+    {{/if}}
+  </div>
+  {{/if}}
   <div class="back-link">
     <a href="/{{username}}">Back to {{username}}'s Collections</a>
   </div>

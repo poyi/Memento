@@ -9,7 +9,13 @@ Template.listPage.events({
     var itemDesc = $('textarea[name="newItemDesc"]').val();
     Meteor.call('addItem', currentUser, listId, itemName, itemUrl, itemDesc, function(error, response){
       if ( error ) {
-        console.log(error);
+        switch(error.reason) {
+            case "Item name is required":
+                toastr.error("Please provide a name for this item.");
+                break;
+            default:
+                toastr.error(error.reason);
+        }
       } else {
         console.log('Added Item to list');
         $('.add-item-form').fadeOut();
@@ -41,7 +47,7 @@ Template.listPage.events({
     var username = Lists.findOne(listId).username;
     Meteor.call('deleteList', listId, function(error, response){
       if ( error ) {
-        console.log(error);
+        toastr.error(error.reason);
       } else {
         Router.go('/' + username);
       }
@@ -55,14 +61,24 @@ Template.listPage.events({
     var permalink = Lists.findOne(listId).permalink;
     var listName = $('input[name="listName"]').val();
     var listDesc = $('textarea[name="listDesc"]').val();
-    var background = $('input[name="background"]').val();
+    var background = $('input[name="listBackground"]').val();
     Meteor.call('updateList', listId, listName, listDesc, background, function(error, response){
       if ( error ) {
-        console.log(error);
+        switch(error.reason) {
+            case "Title is required":
+                toastr.error("Please fill in the list title.");
+                break;
+            case "Permalink is required":
+                toastr.error("Please provide a link url.");
+                break;
+            default:
+                toastr.error(error.reason);
+        }
       } else {
         console.log('Updated List');
         Router.go('/' + username + '/' + permalink);
         $('.form-panel').fadeOut();
+        toastr.success("List details updated!");
       }
     });
   }
@@ -72,5 +88,15 @@ Template.listPage.helpers({
   'items': function(){
     var list = Session.get('currentList')._id;
     return Items.find({list: list});
+  },
+  'count': function(){
+    var listId = Session.get('currentList')._id;
+    var items = Items.find({list: listId});
+    var count = items.count();
+    if(count > 0){
+      return false
+    } else {
+      return true
+    }
   }
 });

@@ -1,10 +1,17 @@
 <template name="listIndex">
   {{#each list}}
-  <div class="list-item">
-    <a href="/{{username}}/{{permalink}}">{{title}}</a>
-    <div class="list-content">
-      {{desc}}
+    <div class="list-item">
+      <a href="/{{username}}/{{permalink}}">{{title}}</a>
+      <div class="list-content">
+        {{desc}}
+      </div>
     </div>
-  </div>
   {{/each}}
+  {{#if count}}
+  <div class="no-list">There is no list <b>yet</b>. 
+    {{#if currentUser}}
+      <a href="#" class="margin-left-10 add-list-link">Create One</a>
+    {{/if}}
+  </div>
+  {{/if}}
 </template>

@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <div class="ui-box column centered">
+  <div id="main" class="ui-box column centered">
     {{> yield}}
   </div>
 
@@ -19,7 +19,7 @@
 </template>
 
 <template name="notFound">
-  Data not found!
+  <div class="not-found">404 Not Found</div>
 </template>
 
 <template name="loading">
