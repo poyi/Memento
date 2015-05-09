@@ -42,6 +42,44 @@ Template.listPage.events({
       }
     });
   },
+  'click .move-item-up': function(e) {
+    var thisItem = $(e.target).parents('.item-card').get(0);
+    var itemBefore = $(e.target).parents('.item-card').prev().get(0);
+    var notFirst = $(itemBefore).hasClass('item-card');
+    if (notFirst) {
+      // Should swap the current item order with the previous
+      var itemId = Blaze.getData(thisItem)._id;
+      var secondItemId = Blaze.getData(itemBefore)._id;
+      var itemOrder = Blaze.getData(itemBefore).order;
+      var secondItemOrder = Blaze.getData(thisItem).order;
+      Meteor.call('moveItem', itemId, secondItemId, itemOrder, secondItemOrder, function(error, response){
+      if ( error ) {
+        toastr.error(error.reason);
+      } else {
+        toastr.success("Item moved.");
+      }
+      });
+    }
+  },
+  'click .move-item-down': function(e) {
+    var thisItem = $(e.target).parents('.item-card').get(0);
+    var itemAfter = $(e.target).parents('.item-card').next().get(0);
+    var notLast = $(itemAfter).hasClass('item-card');
+    if (notLast) {
+      // Should swap the current item order with the next
+      var itemId = Blaze.getData(thisItem)._id;
+      var secondItemId = Blaze.getData(itemAfter)._id;
+      var itemOrder = Blaze.getData(itemAfter).order;
+      var secondItemOrder = Blaze.getData(thisItem).order;
+      Meteor.call('moveItem', itemId, secondItemId, itemOrder, secondItemOrder, function(error, response){
+      if ( error ) {
+        toastr.error(error.reason);
+      } else {
+        toastr.success("Item moved.");
+      }
+      });
+    }
+  },
   'click .close-form': function() {
     $('.form-panel').hide();
   },
@@ -102,7 +140,17 @@ Template.listPage.helpers({
     var currentList = Session.get('currentList');
     if(currentList) {
       var list = currentList._id;
-      return Items.find({list: list});
+      var totalCount = Items.find({list: list}).count();
+      return Items.find({list: list}, {sort: {order: 1}}).map(function(item, index) {
+      // Check if current item is first or last
+      if (index > 0) {
+        item.notFirst = true;
+      }
+      if(index < totalCount - 1) {
+        item.notLast = true;
+      }
+      return item;
+    });
     }
   },
   'count': function(){

@@ -22,18 +22,31 @@ Meteor.methods({
     });
   },
   'addItem' : function(currentUser, listId, itemName, itemUrl, itemDesc) {
+    var totalCount = Items.find({list:listId}).count();
+    var lastCount = totalCount + 1;
     Items.insert({
       "user" : currentUser,
       "list" : listId,
       "itemName" : itemName,
       "itemDesc" : itemDesc,
-      "itemUrl" : itemUrl
+      "itemUrl" : itemUrl,
+      "order" : lastCount
     });
   },
   'deleteItem' : function(itemId) {
     console.log(itemId);
     Items.remove({
       _id : itemId
+    });
+  },
+  'moveItem' : function(itemId, secondItemId, itemOrder, secondItemOrder) {
+    Items.update({_id:itemId}, { $set: {
+      'order' : itemOrder
+    }
+    });
+    Items.update({_id:secondItemId}, { $set: {
+      'order' : secondItemOrder
+    }
     });
   },
   'addList' : function(user, username, listName, listDesc, listUrl, background) {

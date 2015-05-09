@@ -1,4 +1,5 @@
 <template name="userProfile">
+{{#if profileExists}}
   <div class="banner-background ui-box centered column" style="background-image: url('{{profile.background}}')">
     <div class="profile-name">{{profile.firstName}} {{profile.lastName}}</div>
     <div class="profile-location">{{profile.location}}</div>
@@ -59,4 +60,7 @@
   </div>
   <div class="profile-bio">{{profile.bio}}</div>
   {{> listIndex}}
+{{else}}
+  {{> notFound}}
+{{/if}}
 </template>

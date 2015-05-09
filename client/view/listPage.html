@@ -73,7 +73,13 @@
       {{#if listOwner}}
         <div name="{{_id}}" class="item-actions">
           <span class="delete-item"><a href="#">Delete</a></span>
-          <span class="edit-item margin-left-20"><a href="#">Edit Item</a></span>
+          {{#if notFirst}}
+            <span class="move-item-up"><a href="#">Move Up</a></span>
+          {{/if}}
+          {{#if notLast}}
+            <span class="move-item-down"><a href="#">Move Down</a></span>
+          {{/if}}
+          <!-- <span class="edit-item margin-left-20"><a href="#">Edit Item</a></span> -->
         </div>
       {{/if}}
     </div>

@@ -49,6 +49,10 @@ Schemas.itemDetail = new SimpleSchema({
         type: String,
         optional: true
     },
+    order: {
+        type: Number,
+        optional: true
+    },
     list: {
         type: String
     },

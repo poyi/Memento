@@ -71,6 +71,14 @@ Template.userProfile.events({
 });
 
 Template.userProfile.helpers({
+  'profileExists': function(){
+    var profileUser = Session.get('profileUser');
+    if(profileUser) {
+      return true
+    } else {
+      return false
+    } 
+  },
   'profileOwner': function() {
     var profileUser = Session.get('profileUser')._id;
     var currentUser = Meteor.userId();
