@@ -6,8 +6,9 @@ Template.listPage.events({
     console.log(listId);
     var itemName = $('input[name="newItemName"]').val();
     var itemUrl = $('input[name="newItemUrl"]').val();
+    var itemBackground = $('input[name="newItemBackground"]').val();
     var itemDesc = $('textarea[name="newItemDesc"]').val();
-    Meteor.call('addItem', currentUser, listId, itemName, itemUrl, itemDesc, function(error, response){
+    Meteor.call('addItem', currentUser, listId, itemName, itemUrl, itemDesc, itemBackground, function(error, response){
       if ( error ) {
         switch(error.reason) {
             case "Item name is required":
@@ -32,15 +33,11 @@ Template.listPage.events({
     $('.list-design-form').fadeToggle();
     $( "button[name*='"+ Session.get('backgroundStyle') +"']" ).addClass('style-selected');
   },
-  'click .delete-item': function(e) {
+  'click .edit-item': function(e) {
+    e.preventDefault();
     var itemId = $(e.target).parents('.item-actions').attr('name');
-    Meteor.call('deleteItem', itemId, function(error, response){
-      if ( error ) {
-        console.log(error);
-      } else {
-        toastr.success("Item deleted.");
-      }
-    });
+    Session.set('currentItem', itemId);
+    $('.item-edit-form').fadeToggle();
   },
   'click .move-item-up': function(e) {
     var thisItem = $(e.target).parents('.item-card').get(0);
@@ -148,6 +145,9 @@ Template.listPage.helpers({
       }
       if(index < totalCount - 1) {
         item.notLast = true;
+      }
+      if(item.itemBackground) {
+        item.imageExists = true;
       }
       return item;
     });

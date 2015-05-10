@@ -63,6 +63,11 @@ Schemas.itemDetail = new SimpleSchema({
         type: String,
         regEx: SimpleSchema.RegEx.Url,
         optional: true
+    },
+    itemBackground: {
+        type: String,
+        regEx: SimpleSchema.RegEx.Url,
+        optional: true
     }
 });
 

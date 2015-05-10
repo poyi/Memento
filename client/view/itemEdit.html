@@ -1,0 +1,25 @@
+<template name="itemEdit">
+  <div class="form-panel item-edit-form">
+    <form>
+      <div class="close-form">Close</div>
+      <div class="form-field">
+        <span class="field-title">Item Name:</span>
+        <input type="text" name="itemName" placeholder="Awesome list" value="{{item.itemName}}">
+      </div>
+      <div class="form-field">
+        <span class="field-title">Item Description:</span>
+        <textarea type="text" name="itemDesc" placeholder="Say something about this Item.." value="{{item.itemDesc}}"></textarea>
+      </div>
+      <div class="form-field">
+        <span class="field-title">Item Link:</span>
+        <input type="text" name="itemUrl" placeholder="http://example.com" value="{{item.itemUrl}}">
+      </div>
+       <div class="form-field">
+        <span class="field-title">Item Background URL:</span>
+        <input type="text" name="itemBackground" placeholder="http://example.com/image.jpg" value="{{item.itemBackground}}">
+      </div>
+      <button class="update-item success-button" type="submit">Update</button>
+      <div class="delete-item delete-link">Delete</div>
+    </form>
+  </div>
+</template>

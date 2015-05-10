@@ -21,7 +21,7 @@ Meteor.methods({
       } 
     });
   },
-  'addItem' : function(currentUser, listId, itemName, itemUrl, itemDesc) {
+  'addItem' : function(currentUser, listId, itemName, itemUrl, itemDesc, itemBackground) {
     var totalCount = Items.find({list:listId}).count();
     var lastCount = totalCount + 1;
     Items.insert({
@@ -30,6 +30,7 @@ Meteor.methods({
       "itemName" : itemName,
       "itemDesc" : itemDesc,
       "itemUrl" : itemUrl,
+      "itemBackground" : itemBackground,
       "order" : lastCount
     });
   },
@@ -71,6 +72,15 @@ Meteor.methods({
       'title': listName,
       'desc': listDesc,
       'background': background
+      } 
+    });
+  },
+  'updateItem' : function(itemId, itemName, itemDesc, itemUrl, itemBackground) {
+    Items.update({_id:itemId}, { $set: {
+      'itemName': itemName,
+      'itemDesc': itemDesc,
+      'itemUrl': itemUrl,
+      'itemBackground': itemBackground
       } 
     });
   },

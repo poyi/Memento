@@ -12,6 +12,7 @@
   </div>
   {{/if}}
   {{> designPanel}}
+  {{> itemEdit}}
    <div class="form-panel list-edit-form">
     <form>
       <div class="close-form">Close</div>
@@ -31,19 +32,6 @@
       <div class="delete-list delete-link">Delete List</div>
     </form>
   </div>
-  <div class="form-panel edit-item-form">
-    <form>
-      <div class="form-field">
-        <span class="field-title">Item Name:</span>
-        <input type="text" name="itemName" placeholder="Item Name" value="{{item.name}}">
-      </div>
-      <div class="form-field">
-        <span class="field-title">Item URL:</span>
-        <input type="text" name="itemUrl" placeholder="http://" value="{{item.url}}">
-      </div>
-      <button class="edit-item-button success-button" type="submit">UPDATE</button>
-    </form>
-  </div>
   <div class="form-panel add-item-form">
     <div class="close-form">Close</div>
     <form>
@@ -56,6 +44,10 @@
         <input type="text" name="newItemUrl" placeholder="http://">
       </div>
       <div class="form-field">
+        <span class="field-title">Item Background URL:</span>
+        <input type="text" name="newItemBackground" placeholder="http://example.com/image.jpg">
+      </div>
+      <div class="form-field">
         <span class="field-title">Description:</span>
         <textarea type="text" name="newItemDesc" placeholder="Describe this item (optional)"></textarea>
       </div>
@@ -63,23 +55,28 @@
     </form>
   </div>
   {{#each items}}
-    <div class="item-card">
+    <div class="item-card item-style-card">
       {{#if itemUrl}}
       <div class="item-name"><a href="{{itemUrl}}"><h1>{{itemName}}</h1></a></div>
+        {{#if imageExists}}
+          <div class="item-background" style="background-image: url('{{itemBackground}}')"></div>
+        {{/if}}
       {{else}}
       <div class="item-name"><h1>{{itemName}}</h1></div>
+        {{#if imageExists}}
+        <div class="item-background" style="background-image: url('{{itemBackground}}')"></div>
+        {{/if}}
       {{/if}}
       <p class="item-desc">{{itemDesc}}</p>
       {{#if listOwner}}
         <div name="{{_id}}" class="item-actions">
-          <span class="delete-item"><a href="#">Delete</a></span>
           {{#if notFirst}}
             <span class="move-item-up"><a href="#">Move Up</a></span>
           {{/if}}
           {{#if notLast}}
             <span class="move-item-down"><a href="#">Move Down</a></span>
           {{/if}}
-          <!-- <span class="edit-item margin-left-20"><a href="#">Edit Item</a></span> -->
+          <span class="edit-item"><a href="#">Edit Item</a></span>
         </div>
       {{/if}}
     </div>
