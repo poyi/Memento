@@ -32,6 +32,7 @@ Template.listPage.events({
   'click .edit-design-link': function() {
     $('.list-design-form').fadeToggle();
     $( "button[name*='"+ Session.get('backgroundStyle') +"']" ).addClass('style-selected');
+    $( "button[name*='"+ Session.get('itemStyle') +"']" ).addClass('item-style-selected');
   },
   'click .edit-item': function(e) {
     e.preventDefault();
@@ -139,6 +140,13 @@ Template.listPage.helpers({
       var list = currentList._id;
       var totalCount = Items.find({list: list}).count();
       return Items.find({list: list}, {sort: {order: 1}}).map(function(item, index) {
+
+      var isSet = Session.get('itemStyle');
+      if(isSet) {
+        item.style = isSet
+      } else {
+        item.style = "item-style-subtle";
+      }
       // Check if current item is first or last
       if (index > 0) {
         item.notFirst = true;
@@ -185,6 +193,14 @@ Template.listPage.helpers({
       return isSet
     } else {
       return "list-background-subtle";
+    }
+  },
+  'itemStyle': function() {
+    var isSet = Session.get('itemStyle');
+    if(isSet) {
+      return isSet
+    } else {
+      return "item-style-subtle";
     }
   }
 });

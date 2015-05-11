@@ -23,11 +23,26 @@ Template.designPanel.events({
     var style = "list-background-full";
     Session.set('backgroundStyle', style);
   },
+  'click .style-subtle': function(e) {
+    e.preventDefault();
+    $('.item-style-selected').removeClass('item-style-selected');
+    $(e.target).addClass('item-style-selected');
+    var style = "item-style-subtle";
+    Session.set('itemStyle', style);
+  },
+  'click .style-card': function(e) {
+    e.preventDefault();
+    $('.item-style-selected').removeClass('item-style-selected');
+    $(e.target).addClass('item-style-selected');
+    var style = "item-style-card";
+    Session.set('itemStyle', style);
+  },
   'click .update-style': function(e) {
     e.preventDefault();
-    var style = Session.get('backgroundStyle');
+    var backgroundStyle = Session.get('backgroundStyle');
+    var itemStyle = Session.get('itemStyle');
     var currentList = Session.get('currentList')._id;
-    Meteor.call('updateBackgroundDesign', currentList, style, function(error, response){
+    Meteor.call('updateDesign', currentList, backgroundStyle, itemStyle, function(error, response){
       if ( error ) {
         toastr.error(error.reason);
       } else {

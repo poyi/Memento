@@ -38,6 +38,10 @@ Schemas.listDetail = new SimpleSchema({
         type: String,
         regEx: SimpleSchema.RegEx.Url,
         optional: true
+    },
+    itemStyle: {
+        type: String,
+        optional: true
     }
 });
 

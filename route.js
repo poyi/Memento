@@ -44,6 +44,7 @@ Router.map(function(){
       if(list) {
         Session.set('currentList', list);
         Session.set('backgroundStyle', list.backgroundStyle);
+        Session.set('itemStyle', list.itemStyle);
       }
     }
   });

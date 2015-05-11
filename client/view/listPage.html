@@ -55,7 +55,7 @@
     </form>
   </div>
   {{#each items}}
-    <div class="item-card item-style-card">
+    <div class="item-card {{style}}">
       {{#if itemUrl}}
       <div class="item-name"><a href="{{itemUrl}}"><h1>{{itemName}}</h1></a></div>
         {{#if imageExists}}

@@ -84,9 +84,10 @@ Meteor.methods({
       } 
     });
   },
-  'updateBackgroundDesign' : function(currentList, style) {
+  'updateDesign' : function(currentList, backgroundStyle, itemStyle) {
     Lists.update({_id:currentList}, { $set: {
-      'backgroundStyle': style
+      'backgroundStyle': backgroundStyle,
+      'itemStyle': itemStyle
       } 
     });
   }
