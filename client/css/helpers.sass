@@ -19,3 +19,21 @@ $margin-values: 0, 10, 15, 20, 25, 30, 35, 40, 50, 60
 
     table .#{$margin-property}-#{$value} td
       #{$padding-property}: #{$style} !important
+
+// Vertical align any element
+
+@mixin vertical-align
+  position: relative
+  top: 50%
+  -webkit-transform: translateY(-50%)
+  -ms-transform: translateY(-50%)
+  transform: translateY(-50%)
+
+.left
+  float: left
+
+.right
+  float: right
+
+.center-vertically
+   @include vertical-align

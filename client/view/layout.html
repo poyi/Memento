@@ -1,6 +1,13 @@
+<head>
+  <title>Memento</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+</head>
+
 <template name="ApplicationLayout">
   <div class="navBar">
-    <div class="logo ui-box centered center-vertically">MEMENTO</div>
+    <div class="logo ui-box centered center-vertically"><a href="{{pathFor 'home'}}
+"><img src="/img/Memento-logo.png"/></a></div>
     <div class="login-buttons right">
       {{> loginButtons}}
     </div>
@@ -16,9 +23,21 @@
 </template>
 
 <template name="home">
-  <h1>This is home template</h1>
-  <div>test content1</div>
-  <div>another test content</div>
+  <div class="landing-background" style="background-image: url('img/nature-landing.jpg')"></div>
+  <div class="tagline"><h1>Create and Share your <span class="rotate-text">awesome</span> list</h1></div>
+  <div class="landing-cta">Get Started</div>
+  <div class="featured-lists">
+    <div class="section-title">
+      <h1>Featured Lists</h1>
+      {{#each featuredList}}
+      <div class="item-card item-style-card">
+      <div class="item-name"><a href="/{{username}}/{{permalink}}"><h1>{{title}}</h1></a></div>
+      <div class="item-background" style="background-image: url('{{background}}')"></div>
+      <p class="item-desc">{{desc}}</p>
+    </div>
+    {{/each}}
+    </div>
+  </div>
 </template>
 
 <template name="notFound">
