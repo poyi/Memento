@@ -4,15 +4,26 @@
     <div class="profile-name">{{title}}</div>
     <div class="profile-location">{{desc}}</div>
   </div>
-  {{#if listOwner}}
   <div class="page-action-group ui-box centered">
-    <div class="edit-link edit-design-link">Edit Design</div>
-    <div class="edit-link edit-list-link">Edit List</div>
-    <div class="edit-link add-item-link">Add to List</div>
+    {{#if listOwner}}
+      <div class="edit-link edit-design-link">Edit Design</div>
+      <div class="edit-link edit-list-link">Edit List</div>
+      <div class="edit-link add-item-link">Add to List</div>
+    {{/if}}
+    <div class="edit-link share-list">Share List</div>
   </div>
-  {{/if}}
   {{> designPanel}}
   {{> itemEdit}}
+  <div class="form-panel share-list-form">
+    <form>
+      <div class="close-form">Close</div>
+      <div class="form-field">
+        <span class="field-title">Share List URL:</span>
+        <div id="url-link" data-clipboard-text="Copy Me!" title="Click to copy me.">http://memento.meteor.com/{{pathFor 'listPage'}}</div>
+      </div>
+      <button class="done-sharing success-button" type="submit">Done</button>
+    </form>
+  </div>
    <div class="form-panel list-edit-form">
     <form>
       <div class="close-form">Close</div>

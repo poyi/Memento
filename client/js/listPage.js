@@ -81,6 +81,13 @@ Template.listPage.events({
   'click .close-form': function() {
     $('.form-panel').hide();
   },
+  'click .share-list': function() {
+    $('.share-list-form').fadeToggle();
+  },
+  'click .done-sharing': function(e) {
+    e.preventDefault();
+    $('.share-list-form').hide();
+  },
   'click .delete-list': function(e) {
     e.preventDefault();
     var listId = Session.get('currentList')._id;
