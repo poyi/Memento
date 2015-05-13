@@ -13,6 +13,7 @@ Template.userProfile.events({
         console.log(error);
       } else {
         $('.profile-edit-form').fadeOut();
+        toastr.error(error);
       }
     });
   },

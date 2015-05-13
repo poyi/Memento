@@ -19,5 +19,5 @@ Template.ApplicationLayout.helpers({
   'profileLink': function() {
     var username = Meteor.user().username;
     return "/" + username;
-    }
+  }
 });

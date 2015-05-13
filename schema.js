@@ -88,7 +88,6 @@ Schema.UserProfile = new SimpleSchema({
     },
     location: {
         type: String,
-        regEx: /^[a-z0-9A-z .]{3,30}$/,
         optional: true
     },
     birthday: {

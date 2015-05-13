@@ -25,7 +25,11 @@
 <template name="home">
   <div class="landing-background" style="background-image: url('img/nature-landing.jpg')"></div>
   <div class="tagline"><h1>Create and Share your <span class="rotate-text">awesome</span> list</h1></div>
-  <div class="landing-cta">Get Started</div>
+  {{#if currentUser}}
+    <div class="landing-cta"><a href="{{profileLink}}">Create My List</a></div>
+  {{else}}
+    <div class="landing-cta get-started">Get Started</div>
+  {{/if}}
   <div class="featured-lists">
     <div class="section-title">
       <h1>Featured Lists</h1>
